@@ -3,6 +3,7 @@ package com.example.mansi.movies;
 import android.content.Context;
 import android.net.Uri;
 import android.support.v4.content.AsyncTaskLoader;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,12 +19,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class FetchMovieData extends AsyncTaskLoader<ArrayList<Movie>> {
+public class FetchMoviesData extends AsyncTaskLoader<ArrayList<Movie>> {
     private static final String BASEURL = "http://api.themoviedb.org/3/movie/";
     private static final String API_KEY = "api_key";
-    private static final String LOG_TAG = FetchMovieData.class.getSimpleName();
+    private static final String LOG_TAG = FetchMoviesData.class.getSimpleName();
 
-    public FetchMovieData(Context context) {
+    public FetchMoviesData(Context context) {
         super(context);
         forceLoad();
     }
@@ -81,6 +82,7 @@ public class FetchMovieData extends AsyncTaskLoader<ArrayList<Movie>> {
 
         ArrayList<Movie> movieArrayList = new ArrayList<>();
 
+        final String idLabel = "id";
         final String title = "original_title";
         final String poster_path = "poster_path";
         final String plot = "overview";
@@ -93,13 +95,16 @@ public class FetchMovieData extends AsyncTaskLoader<ArrayList<Movie>> {
             JSONArray rootArray = root.getJSONArray(results);
             for (int i = 0; i < rootArray.length(); i++) {
                 JSONObject currentMovie = rootArray.getJSONObject(i);
+                int id = currentMovie.getInt(idLabel);
                 String movieTitle = currentMovie.getString(title);
                 String moviePoster = currentMovie.getString(poster_path);
                 String moviePlotSynopsis = currentMovie.getString(plot);
                 double voteAverage = currentMovie.getDouble(ratings);
                 String movieReleaseDate = currentMovie.getString(date);
                 //adding new movie to moviesArrayList
-                movieArrayList.add(i, new Movie(movieTitle,
+                movieArrayList.add(i, new Movie(
+                        id,
+                        movieTitle,
                         moviePoster,
                         moviePlotSynopsis,
                         voteAverage,

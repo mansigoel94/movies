@@ -1,12 +1,17 @@
 package com.example.mansi.movies;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ShareActionProvider;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import static com.example.mansi.movies.DetailFragment.mTrailer1;
 
 
 public class DetailActivity extends AppCompatActivity {
@@ -18,9 +23,17 @@ public class DetailActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.container, new DetailActivityFragment())
+                    .add(R.id.container, new DetailFragment())
                     .commit();
         }
+
+        Movie movieToDisplay = (Movie) getIntent()
+                .getParcelableExtra(getString(R.string.open_detail_intent_key));
+
+        Log.v("Mansi","id is"+movieToDisplay.getId());
+
+        FetchDetailData fetchDetailData = new FetchDetailData(DetailActivity.this,movieToDisplay.getId());
+        fetchDetailData.execute("videos", "reviews", "");
     }
 
     @Override

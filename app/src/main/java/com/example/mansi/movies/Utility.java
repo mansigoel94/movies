@@ -32,7 +32,7 @@ public class Utility {
         return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting();
     }
 
-    public static String formatDate(Context context, String releaseDate) {
+    public static String formatDate(String releaseDate) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = null;
         try {
@@ -40,8 +40,9 @@ public class Utility {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        java.text.DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(context);
-        return dateFormat.format(date);
+//        java.text.DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(context);
+        SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("yyyy");
+        return simpleDateFormat1.format(date);
     }
 
     public static String readPreference(Context context, String key, String defaultValue) {

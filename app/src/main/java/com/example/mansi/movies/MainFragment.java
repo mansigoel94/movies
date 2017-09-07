@@ -88,7 +88,6 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
     }
 
     @Override
@@ -114,7 +113,7 @@ public class MainFragment extends Fragment implements LoaderManager.LoaderCallba
     @Override
     public Loader<ArrayList<Movie>> onCreateLoader(int i, Bundle bundle) {
         mAdapter.clear();
-        return new FetchMovieData(getContext());
+        return new FetchMoviesData(getContext());
     }
 
     @Override

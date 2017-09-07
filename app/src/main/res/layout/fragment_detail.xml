@@ -7,76 +7,168 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="@dimen/margin"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/detail_poster"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            tools:src="@drawable/interstellar" />
-
         <TextView
-            style="@style/TextAppearance.AppCompat.Display1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_heading"
-            android:text="@string/release_date" />
+            android:id="@+id/movie_title"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@color/teal"
+            android:fontFamily="sans-serif"
+            android:gravity="center_vertical"
+            android:paddingLeft="16dp"
+            android:textColor="@android:color/white"
+            android:textSize="30sp"
+            tools:text="Chappie" />
 
-        <TextView
-            android:id="@+id/detail_release_date"
-            style="@style/Base.TextAppearance.AppCompat.Medium"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin"
-            android:maxLines="3"
-            tools:text="26 March 2016" />
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/textView"
-            style="@style/TextAppearance.AppCompat.Display1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_heading"
-            android:text="@string/synopsis" />
+            <ImageView
+                android:id="@+id/detail_poster"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:src="@drawable/interstellar" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="36dp">
+
+                <TextView
+                    android:id="@+id/detail_release_date"
+                    style="@style/Base.TextAppearance.AppCompat.Large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="2016" />
+
+                <TextView
+                    android:id="@+id/detail_duration"
+                    style="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Duration"
+                    tools:text="120min" />
+
+                <TextView
+                    android:id="@+id/detail_ratings"
+                    style="@style/Base.TextAppearance.AppCompat.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    tools:text="6.5/10" />
+
+                <Button
+                    android:id="@+id/detail_favourite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/light_teal"
+                    android:text="Mark as\nfavourite" />
+            </LinearLayout>
+        </LinearLayout>
 
         <TextView
             android:id="@+id/detail_synopsis"
             style="@style/Base.TextAppearance.AppCompat.Body1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
             android:layout_marginTop="@dimen/margin"
             android:maxLines="3"
             tools:text="Minions Stuart, Kevin and Bob are recruited by Scarlet Overkill, a super-villain who, alongside her inventor husband Herb, hatches a plot to take over the world." />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/black" />
 
         <TextView
-            style="@style/TextAppearance.AppCompat.Display1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_heading"
-            android:text="@string/users_ratings" />
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:text="Trailers:"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:textColor="@android:color/black" />
 
+        <!--Made assumption that there can at most three trailers
+        for a particular movie-->
         <LinearLayout
+            android:id="@+id/trailer_1_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <ImageView
+                android:id="@+id/trailer_1_play_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_star_border_black_48dp" />
+                android:src="@drawable/ic_play_arrow_black_48dp" />
 
             <TextView
-                android:id="@+id/detail_ratings"
-                style="@style/Base.TextAppearance.AppCompat.Large"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/margin"
-                tools:text="6.5/10" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="Trailer 1"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/trailer_2_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/trailer_2_play_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_play_arrow_black_48dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="Trailer 2"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/trailer_3_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/trailer_3_play_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_play_arrow_black_48dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="Trailer 3"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+        </LinearLayout>
+        <!--TODO Add reviews-->
     </LinearLayout>
 </ScrollView>
