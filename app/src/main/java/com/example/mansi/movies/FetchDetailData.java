@@ -29,6 +29,7 @@ import static com.example.mansi.movies.DetailFragment.mTrailer2;
 import static com.example.mansi.movies.DetailFragment.mTrailer2Layout;
 import static com.example.mansi.movies.DetailFragment.mTrailer3;
 import static com.example.mansi.movies.DetailFragment.mTrailer3Layout;
+import static com.example.mansi.movies.DetailFragment.mTrailerLabel;
 
 public class FetchDetailData extends AsyncTask<String, Void, String[]> {
 
@@ -142,6 +143,8 @@ public class FetchDetailData extends AsyncTask<String, Void, String[]> {
 
         //check number of trailers for selected movie
         switch (counterTrailer) {
+            case 0:
+                mTrailerLabel.setText(R.string.no_trailers);
             case 1:
                 //one trailer
                 mTrailer1Layout.setVisibility(View.VISIBLE);
@@ -184,7 +187,7 @@ public class FetchDetailData extends AsyncTask<String, Void, String[]> {
 
         //display duration
         if (runTimeDuration != -1)
-            mDuration.setText(String.valueOf(runTimeDuration));
+            mDuration.setText(String.valueOf(runTimeDuration) + " min");
         else {
             mDuration.setVisibility(View.GONE);
         }

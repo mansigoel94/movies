@@ -84,7 +84,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="@dimen/margin"
-            android:maxLines="3"
+            android:ellipsize="end"
+            android:maxLines="4"
             tools:text="Minions Stuart, Kevin and Bob are recruited by Scarlet Overkill, a super-villain who, alongside her inventor husband Herb, hatches a plot to take over the world." />
 
         <View
@@ -94,6 +95,7 @@
             android:background="@android:color/black" />
 
         <TextView
+            android:id="@+id/trailer_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
@@ -170,5 +172,59 @@
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
         </LinearLayout>
         <!--TODO Add reviews-->
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/black"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/Reviews_label_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:text="Review 1:"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:textColor="@android:color/black"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/review_1"
+            style="@style/Base.TextAppearance.AppCompat.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="@dimen/margin"
+            android:ellipsize="end"
+            android:maxLines="5"
+            android:visibility="gone"
+            tools:text="The minions are a nice idea and the animation and London recreation is really good, but that's about it.\r\n\r\nThe script is boring and the jokes not really funny" />
+
+        <TextView
+            android:id="@+id/Reviews_label_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:text="Review 2:"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:textColor="@android:color/black"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/review_2"
+            style="@style/Base.TextAppearance.AppCompat.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="@dimen/margin"
+            android:ellipsize="end"
+            android:maxLines="5"
+            android:visibility="gone"
+            tools:text="The minions are a nice idea and the animation and London recreation is really good, but that's about it.\r\n\r\nThe script is boring and the jokes not really funny" />
+
     </LinearLayout>
 </ScrollView>

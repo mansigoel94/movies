@@ -1,11 +1,8 @@
 package com.example.mansi.movies;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +18,7 @@ public class DetailFragment extends Fragment {
     static ImageView mTrailer1;
     static ImageView mTrailer2;
     static ImageView mTrailer3;
+    static TextView mTrailerLabel;
     static LinearLayout mTrailer1Layout;
     static LinearLayout mTrailer2Layout;
     static LinearLayout mTrailer3Layout;
@@ -50,6 +48,7 @@ public class DetailFragment extends Fragment {
         mSynopsis = (TextView) rootView.findViewById(R.id.detail_synopsis);
         mDuration = (TextView) rootView.findViewById(R.id.detail_duration);
         mRatings = (TextView) rootView.findViewById(R.id.detail_ratings);
+        mTrailerLabel = (TextView) rootView.findViewById(R.id.trailer_label);
         mReleaseDate = (TextView) rootView.findViewById(R.id.detail_release_date);
         mTrailer1 = (ImageView) rootView.findViewById(R.id.trailer_1_play_button);
         mTrailer2 = (ImageView) rootView.findViewById(R.id.trailer_2_play_button);

@@ -30,8 +30,6 @@ public class DetailActivity extends AppCompatActivity {
         Movie movieToDisplay = (Movie) getIntent()
                 .getParcelableExtra(getString(R.string.open_detail_intent_key));
 
-        Log.v("Mansi","id is"+movieToDisplay.getId());
-
         FetchDetailData fetchDetailData = new FetchDetailData(DetailActivity.this,movieToDisplay.getId());
         fetchDetailData.execute("videos", "reviews", "");
     }

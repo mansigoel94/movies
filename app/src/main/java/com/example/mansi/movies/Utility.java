@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import static android.R.attr.duration;
 import static android.content.Context.CONNECTIVITY_SERVICE;
 
 public class Utility {
