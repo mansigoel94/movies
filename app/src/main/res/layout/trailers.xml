@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?><!--Made assumption that there can at most three trailers
+        for a particular movie-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/trailer_1_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/trailer_1_play_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_play_arrow_black_48dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="Trailer 1"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/trailer_2_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/trailer_2_play_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_play_arrow_black_48dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="Trailer 2"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/trailer_3_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/trailer_3_play_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_play_arrow_black_48dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="Trailer 3"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+    </LinearLayout><!--Made assumption that there can at most three trailers
+        for a particular movie-->
+    <LinearLayout
+        android:id="@+id/trailer_1_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/trailer_1_play_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_play_arrow_black_48dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="Trailer 1"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/trailer_2_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/trailer_2_play_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_play_arrow_black_48dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="Trailer 2"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/trailer_3_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/trailer_3_play_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_play_arrow_black_48dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="Trailer 3"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+    </LinearLayout><!--Made assumption that there can at most three trailers
+        for a particular movie-->
+    <LinearLayout
+        android:id="@+id/trailer_1_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/trailer_1_play_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_play_arrow_black_48dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="Trailer 1"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/trailer_2_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/trailer_2_play_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_play_arrow_black_48dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="Trailer 2"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/trailer_3_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/trailer_3_play_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_play_arrow_black_48dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="Trailer 3"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+    </LinearLayout>
+</LinearLayout>

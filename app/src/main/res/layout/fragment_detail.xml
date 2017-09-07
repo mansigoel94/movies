@@ -104,127 +104,15 @@
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
             android:textColor="@android:color/black" />
 
-        <!--Made assumption that there can at most three trailers
-        for a particular movie-->
-        <LinearLayout
-            android:id="@+id/trailer_1_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <ImageView
-                android:id="@+id/trailer_1_play_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_play_arrow_black_48dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="Trailer 1"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/trailer_2_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <ImageView
-                android:id="@+id/trailer_2_play_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_play_arrow_black_48dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="Trailer 2"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/trailer_3_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <ImageView
-                android:id="@+id/trailer_3_play_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_play_arrow_black_48dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="Trailer 3"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
-        </LinearLayout>
-        <!--TODO Add reviews-->
+        <include layout="@layout/trailers" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="8dp"
             android:background="@android:color/black"
-            android:visibility="gone"/>
-
-        <TextView
-            android:id="@+id/Reviews_label_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
-            android:text="Review 1:"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-            android:textColor="@android:color/black"
             android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/review_1"
-            style="@style/Base.TextAppearance.AppCompat.Body1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="@dimen/margin"
-            android:ellipsize="end"
-            android:maxLines="5"
-            android:visibility="gone"
-            tools:text="The minions are a nice idea and the animation and London recreation is really good, but that's about it.\r\n\r\nThe script is boring and the jokes not really funny" />
-
-        <TextView
-            android:id="@+id/Reviews_label_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
-            android:text="Review 2:"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-            android:textColor="@android:color/black"
-            android:visibility="gone" />
-
-        <TextView
-            android:id="@+id/review_2"
-            style="@style/Base.TextAppearance.AppCompat.Body1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="@dimen/margin"
-            android:ellipsize="end"
-            android:maxLines="5"
-            android:visibility="gone"
-            tools:text="The minions are a nice idea and the animation and London recreation is really good, but that's about it.\r\n\r\nThe script is boring and the jokes not really funny" />
-
+        <include layout="@layout/reviews" />
     </LinearLayout>
 </ScrollView>
