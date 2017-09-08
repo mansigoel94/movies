@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="16dp"
+    android:orientation="vertical">
+
+    <!--Assumption that there can be maximum three reviews-->
+
     <TextView
-        android:id="@+id/Reviews_label_1"
+        android:id="@+id/reviews_label_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -27,11 +32,11 @@
         tools:text="The minions are a nice idea and the animation and London recreation is really good, but that's about it.\r\n\r\nThe script is boring and the jokes not really funny" />
 
     <TextView
-        android:id="@+id/Reviews_label_2"
+        android:id="@+id/reviews_label_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="Review 2:"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
         android:textColor="@android:color/black"
@@ -39,6 +44,29 @@
 
     <TextView
         android:id="@+id/review_2"
+        style="@style/Base.TextAppearance.AppCompat.Body1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="@dimen/margin"
+        android:ellipsize="end"
+        android:maxLines="5"
+        android:visibility="gone"
+        tools:text="The minions are a nice idea and the animation and London recreation is really good, but that's about it.\r\n\r\nThe script is boring and the jokes not really funny" />
+
+    <TextView
+        android:id="@+id/reviews_label_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Review 3:"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:textColor="@android:color/black"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/review_3"
         style="@style/Base.TextAppearance.AppCompat.Body1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -24,13 +24,18 @@ public class DetailFragment extends Fragment {
     static LinearLayout mTrailer1Layout;
     static LinearLayout mTrailer2Layout;
     static LinearLayout mTrailer3Layout;
+    static TextView mReviewLabel1;
+    static TextView mReview1;
+    static TextView mReviewLabel2;
+    static TextView mReview2;
+    static TextView mReviewLabel3;
+    static TextView mReview3;
     TextView mTitle;
     TextView mSynopsis;
     ImageView mImageView;
     TextView mRatings;
     TextView mReleaseDate;
     int movieId;
-
     Callback mCallback;
 
     public DetailFragment() {
@@ -62,7 +67,6 @@ public class DetailFragment extends Fragment {
         Movie movieToDisplay = (Movie) getActivity().getIntent()
                 .getParcelableExtra(getString(R.string.open_detail_intent_key));
 
-
         mTitle = (TextView) rootView.findViewById(R.id.movie_title);
         mImageView = (ImageView) rootView.findViewById(R.id.detail_poster);
         mSynopsis = (TextView) rootView.findViewById(R.id.detail_synopsis);
@@ -76,7 +80,12 @@ public class DetailFragment extends Fragment {
         mTrailer1Layout = (LinearLayout) rootView.findViewById(R.id.trailer_1_layout);
         mTrailer2Layout = (LinearLayout) rootView.findViewById(R.id.trailer_2_layout);
         mTrailer3Layout = (LinearLayout) rootView.findViewById(R.id.trailer_3_layout);
-
+        mReview1 = (TextView) rootView.findViewById(R.id.review_1);
+        mReview2 = (TextView) rootView.findViewById(R.id.review_2);
+        mReview3 = (TextView) rootView.findViewById(R.id.review_3);
+        mReviewLabel1 = (TextView) rootView.findViewById(R.id.reviews_label_1);
+        mReviewLabel2 = (TextView) rootView.findViewById(R.id.reviews_label_2);
+        mReviewLabel3 = (TextView) rootView.findViewById(R.id.reviews_label_3);
 
         movieId = movieToDisplay.getId();
 

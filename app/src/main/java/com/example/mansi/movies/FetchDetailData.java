@@ -23,6 +23,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import static com.example.mansi.movies.DetailFragment.mDuration;
+import static com.example.mansi.movies.DetailFragment.mReview1;
+import static com.example.mansi.movies.DetailFragment.mReview2;
+import static com.example.mansi.movies.DetailFragment.mReview3;
+import static com.example.mansi.movies.DetailFragment.mReviewLabel1;
+import static com.example.mansi.movies.DetailFragment.mReviewLabel2;
+import static com.example.mansi.movies.DetailFragment.mReviewLabel3;
 import static com.example.mansi.movies.DetailFragment.mTrailer1;
 import static com.example.mansi.movies.DetailFragment.mTrailer1Layout;
 import static com.example.mansi.movies.DetailFragment.mTrailer2;
@@ -36,6 +42,7 @@ public class FetchDetailData extends AsyncTask<String, Void, String[]> {
     private static final String BASEURL = "http://api.themoviedb.org/3/movie/";
     private static final String API_KEY = "api_key";
     Context mContext;
+    DetailFragment.Callback mCallback;
     private int mId;
     private int runTimeDuration;
     private String[] reviews;
@@ -46,6 +53,7 @@ public class FetchDetailData extends AsyncTask<String, Void, String[]> {
     public FetchDetailData(Context context, int id) {
         mContext = context;
         mId = id;
+        mCallback = (DetailFragment.Callback) context;
     }
 
     @Override
@@ -185,11 +193,45 @@ public class FetchDetailData extends AsyncTask<String, Void, String[]> {
             }
         }
 
+        if (counterReviews >= 1) {
+            mReviewLabel1.setVisibility(View.VISIBLE);
+            mReview1.setVisibility(View.VISIBLE);
+            mReview1.setText(reviewsSetter[0]);
+            mReview1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mCallback.notifyChange(mReview1, reviewsSetter[0]);
+                }
+            });
+        }
+        if (counterReviews >= 2) {
+            mReviewLabel2.setVisibility(View.VISIBLE);
+            mReview2.setVisibility(View.VISIBLE);
+            mReview2.setText(reviewsSetter[1]);
+            mReview2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mCallback.notifyChange(mReview2, reviewsSetter[1]);
+                }
+            });
+        }
+        if (counterReviews >= 3) {
+            mReviewLabel3.setVisibility(View.VISIBLE);
+            mReview3.setVisibility(View.VISIBLE);
+            mReview3.setText(reviewsSetter[2]);
+            mReview3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mCallback.notifyChange(mReview3, reviewsSetter[2]);
+                }
+            });
+        }
+
         //display duration
         if (runTimeDuration != -1)
             mDuration.setText(String.valueOf(runTimeDuration) + " min");
         else {
-            mDuration.setVisibility(View.GONE);
+            mDuration.setVisibility(View.INVISIBLE);
         }
     }
 
