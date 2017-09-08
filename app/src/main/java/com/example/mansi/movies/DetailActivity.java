@@ -1,8 +1,8 @@
 package com.example.mansi.movies;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ShareActionProvider;
@@ -10,11 +10,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
-import static com.example.mansi.movies.DetailFragment.mTrailer1;
 
+public class DetailActivity extends AppCompatActivity implements DetailFragment.Callback {
 
-public class DetailActivity extends AppCompatActivity {
+    private static final String DETFRAGTAG = "DetailFragment";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,15 +24,10 @@ public class DetailActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.container, new DetailFragment())
+                    .add(R.id.container, new DetailFragment(), DETFRAGTAG)
                     .commit();
         }
 
-        Movie movieToDisplay = (Movie) getIntent()
-                .getParcelableExtra(getString(R.string.open_detail_intent_key));
-
-        FetchDetailData fetchDetailData = new FetchDetailData(DetailActivity.this,movieToDisplay.getId());
-        fetchDetailData.execute("videos", "reviews", "");
     }
 
     @Override
@@ -56,5 +52,23 @@ public class DetailActivity extends AppCompatActivity {
             return shareIntent;
         }
         return null;
+    }
+
+    @Override
+    public void notifyChange(View changedView, String text) {
+        if (changedView instanceof TextView) {
+            Log.v("Mansi", "Its textview");
+            Bundle bundle = new Bundle();
+            bundle.putString("text", text);
+
+            // set Fragment class Arguments
+            Fragment fragment = new TextViewFragment();
+            fragment.setArguments(bundle);
+
+            getSupportFragmentManager().beginTransaction()
+                    .addToBackStack(DETFRAGTAG)
+                    .replace(R.id.container, fragment)
+                    .commit();
+        }
     }
 }

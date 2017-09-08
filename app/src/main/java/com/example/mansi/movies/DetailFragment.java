@@ -1,8 +1,10 @@
 package com.example.mansi.movies;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,8 +31,26 @@ public class DetailFragment extends Fragment {
     TextView mReleaseDate;
     int movieId;
 
+    Callback mCallback;
+
     public DetailFragment() {
         setHasOptionsMenu(true);
+    }
+
+    //    // Override onAttach to make sure that the container activity has implemented the callback
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        // This makes sure that the host activity has implemented the callback interface
+        // If not, it throws an exception
+        try {
+            mCallback = (Callback) context;
+            Log.v("Mansi", "callback attached");
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString()
+                    + " must implement Callback Interface");
+        }
     }
 
     @Override
@@ -84,10 +104,30 @@ public class DetailFragment extends Fragment {
         }
 
         //displaying synopsis
-        String synopsis = movieToDisplay.getSynopsis();
+        final String synopsis = movieToDisplay.getSynopsis();
         if (synopsis != null && !TextUtils.isEmpty(synopsis))
             mSynopsis.setText(synopsis);
 
+        mSynopsis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCallback.notifyChange(mSynopsis, synopsis);
+            }
+        });
+
         return rootView;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Movie movieToDisplay = (Movie) getActivity().getIntent()
+                .getParcelableExtra(getString(R.string.open_detail_intent_key));
+        FetchDetailData fetchDetailData = new FetchDetailData(getActivity(), movieToDisplay.getId());
+        fetchDetailData.execute("videos", "reviews", "");
+    }
+
+    public interface Callback {
+        void notifyChange(View view, String text);
     }
 }
