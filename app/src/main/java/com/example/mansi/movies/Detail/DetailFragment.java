@@ -228,15 +228,24 @@ public class DetailFragment extends Fragment {
             mSynopsis.setText(summary);
             mImageView.setImageBitmap(bitmap);
             mRatings.setText(rating);
-            mReview1.setVisibility(View.VISIBLE);
-            mReview2.setVisibility(View.VISIBLE);
-            mReview3.setVisibility(View.VISIBLE);
             if (review1 != null && !TextUtils.isEmpty(review1))
                 mReview1.setText(review1);
+            else {
+                mReview1.setVisibility(View.GONE);
+                mReviewLabel1.setVisibility(View.GONE);
+            }
             if (review2 != null && !TextUtils.isEmpty(review2))
                 mReview2.setText(review2);
+            else {
+                mReview2.setVisibility(View.GONE);
+                mReviewLabel2.setVisibility(View.GONE);
+            }
             if (review3 != null && !TextUtils.isEmpty(review3))
                 mReview3.setText(review3);
+            else {
+                mReview3.setVisibility(View.GONE);
+                mReviewLabel3.setVisibility(View.GONE);
+            }
             mFavourite.setText(getString(R.string.delete_database));
             mFavourite.setVisibility(View.VISIBLE);
         }
