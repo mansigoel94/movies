@@ -16,7 +16,7 @@ public class TextViewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_text, container, false);
         TextView textView = (TextView) rootView.findViewById(R.id.fragment_replace_textview);
-        String strText = getArguments().getString("text");
+        String strText = getArguments().getString(getString(R.string.textview_key));
         textView.setText(strText);
         return rootView;
     }

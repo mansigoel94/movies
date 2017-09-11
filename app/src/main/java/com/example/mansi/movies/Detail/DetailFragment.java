@@ -1,6 +1,5 @@
 package com.example.mansi.movies.Detail;
 
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -11,7 +10,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,7 +61,6 @@ public class DetailFragment extends Fragment {
             MoviesContract.MoviesEntry.COL_REVIEW2,
             MoviesContract.MoviesEntry.COL_REVIEW3,
             MoviesContract.MoviesEntry.COL_DATE};
-    public final int COL_ID = 0;
     public final int COL_NAME = 1;
     public final int COL_IMAGE = 2;
     public final int COL_RATING = 3;
@@ -143,17 +140,42 @@ public class DetailFragment extends Fragment {
         mReviewLabel2 = (TextView) rootView.findViewById(R.id.reviews_label_2);
         mReviewLabel3 = (TextView) rootView.findViewById(R.id.reviews_label_3);
 
+        mSynopsis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCallback.notifyClick(mSynopsis, mSynopsis.getText().toString());
+            }
+        });
+
         mFavourite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.v("Mansi", "On click listener triggered");
                 if (mFavourite.getText().toString().equals(getString(R.string.mark_as_fav))) {
-                    Log.v("Mansi", "Adding movie");
                     saveMovie();
                 } else {
-                    Log.v("Mansi", "Deleting movie");
                     deleteMovie();
                 }
+            }
+        });
+
+        mReview1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCallback.notifyClick(mReview1, mReview1.getText().toString());
+            }
+        });
+
+        mReview2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCallback.notifyClick(mReview2, mReview2.getText().toString());
+            }
+        });
+
+        mReview3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCallback.notifyClick(mReview3, mReview3.getText().toString());
             }
         });
 
@@ -188,7 +210,6 @@ public class DetailFragment extends Fragment {
         Cursor cursor = Utility.getCursorWithId(getContext(), projection, movieId);
 
         if (cursor.moveToFirst()) {
-            Log.v("Mansi","cursor if");
             //grabbing all values from returned cursor
             String title = cursor.getString(COL_NAME);
             int duration = cursor.getInt(COL_DURATION);
@@ -233,10 +254,11 @@ public class DetailFragment extends Fragment {
     }
 
     public void updateUIWithSync() {
+        //starting FetchDetailData AsyncTask to grab trailer's url, reviews and duration from 3 different urls
         FetchDetailData fetchDetailData = new FetchDetailData(getActivity(), movieToDisplay.getId());
         fetchDetailData.execute("videos", "reviews", "");
 
-        //starting @FetchLogoBitmap AsyncTask
+        //starting FetchLogoBitmap AsyncTask
         FetchLogoBitmap fetchLogoBitmap = new FetchLogoBitmap();
         fetchLogoBitmap.execute(Utility.getAbsoluteUrlForPoster(movieToDisplay.getPoster()));
 
@@ -270,36 +292,6 @@ public class DetailFragment extends Fragment {
         if (summary != null && !TextUtils.isEmpty(summary))
             mSynopsis.setText(summary);
 
-        mSynopsis.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mCallback.notifyClick(mSynopsis, summary);
-            }
-        });
-    }
-
-    private void deleteMovie() {
-        Uri uri = MoviesContract.MoviesEntry.buildMoviesUri(movieId);
-        String selection = MoviesContract.MoviesEntry.COL_ID + "=?";
-        String selectionArgs[] = new String[]{String.valueOf(movieId)};
-        int rowsDeleted = getActivity().getContentResolver().delete(
-                uri,
-                selection,
-                selectionArgs);
-
-        if (rowsDeleted == 0) {
-            try {
-                throw new Exception("Error in deletion");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            Toast.makeText(getContext(), getString(R.string.movie_deleted), Toast.LENGTH_SHORT).show();
-            if (offlineMode)
-                getActivity().finish();
-            else
-                mFavourite.setText(getString(R.string.mark_as_fav));
-        }
     }
 
     private void saveMovie() {
@@ -334,6 +326,30 @@ public class DetailFragment extends Fragment {
         } else {
             Toast.makeText(getContext(), R.string.movie_added, Toast.LENGTH_SHORT).show();
             mFavourite.setText(R.string.delete_database);
+        }
+    }
+
+    private void deleteMovie() {
+        Uri uri = MoviesContract.MoviesEntry.buildMoviesUri(movieId);
+        String selection = MoviesContract.MoviesEntry.COL_ID + "=?";
+        String selectionArgs[] = new String[]{String.valueOf(movieId)};
+        int rowsDeleted = getActivity().getContentResolver().delete(
+                uri,
+                selection,
+                selectionArgs);
+
+        if (rowsDeleted == 0) {
+            try {
+                throw new Exception("Error in deletion");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            Toast.makeText(getContext(), getString(R.string.movie_deleted), Toast.LENGTH_SHORT).show();
+            if (offlineMode)
+                getActivity().finish();
+            else
+                mFavourite.setText(getString(R.string.mark_as_fav));
         }
     }
 

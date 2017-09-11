@@ -83,7 +83,7 @@ public class DetailActivity extends AppCompatActivity implements DetailFragment.
     public void notifyClick(View changedView, String text) {
         if (changedView instanceof TextView) {
             Bundle bundle = new Bundle();
-            bundle.putString("text", text);
+            bundle.putString(getString(R.string.textview_key), text);
 
             // set Fragment class Arguments
             Fragment fragment = new TextViewFragment();

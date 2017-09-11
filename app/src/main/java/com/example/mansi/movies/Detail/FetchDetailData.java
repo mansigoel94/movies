@@ -178,62 +178,20 @@ public class FetchDetailData extends AsyncTask<String, Void, String[]> {
         }
 
         if (counterReviews == 3) {
-
             DetailFragment.mReview1.setText(reviewsSetter[0]);
-            DetailFragment.mReview1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mCallback.notifyClick(DetailFragment.mReview1, reviewsSetter[0]);
-                }
-            });
-
             DetailFragment.mReview2.setText(reviewsSetter[1]);
-            DetailFragment.mReview2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mCallback.notifyClick(DetailFragment.mReview2, reviewsSetter[1]);
-                }
-            });
-
             DetailFragment.mReview3.setText(reviewsSetter[2]);
-            DetailFragment.mReview3.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mCallback.notifyClick(DetailFragment.mReview3, reviewsSetter[2]);
-                }
-            });
-
         } else if (counterReviews == 2) {
             DetailFragment.mReview1.setText(reviewsSetter[0]);
-            DetailFragment.mReview1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mCallback.notifyClick(DetailFragment.mReview1, reviewsSetter[0]);
-                }
-            });
-
             DetailFragment.mReview2.setText(reviewsSetter[1]);
-            DetailFragment.mReview2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mCallback.notifyClick(DetailFragment.mReview2, reviewsSetter[1]);
-                }
-            });
 
             DetailFragment.mReviewLabel3.setVisibility(View.GONE);
             DetailFragment.mReview3.setVisibility(View.GONE);
         } else if (counterReviews == 1) {
             DetailFragment.mReview1.setText(reviewsSetter[0]);
-            DetailFragment.mReview1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mCallback.notifyClick(DetailFragment.mReview1, reviewsSetter[0]);
-                }
-            });
 
             DetailFragment.mReviewLabel2.setVisibility(View.GONE);
             DetailFragment.mReview2.setVisibility(View.GONE);
-
             DetailFragment.mReviewLabel3.setVisibility(View.GONE);
             DetailFragment.mReview3.setVisibility(View.GONE);
         } else {
