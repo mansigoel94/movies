@@ -52,6 +52,7 @@ public class DetailFragment extends Fragment {
     static TextView mReviewLabel3;
     static TextView mReview3;
     static Button mFavourite;
+    static boolean offlineMode;
     public final String projection[] = {MoviesContract.MoviesEntry._ID,
             MoviesContract.MoviesEntry.COL_NAME,
             MoviesContract.MoviesEntry.COL_IMAGE,
@@ -72,7 +73,6 @@ public class DetailFragment extends Fragment {
     public final int COL_REVIEW2 = 7;
     public final int COL_REVIEW3 = 8;
     public final int COL_DATE = 9;
-
     TextView mTitle;
     TextView mSynopsis;
     ImageView mImageView;
@@ -87,8 +87,6 @@ public class DetailFragment extends Fragment {
     private String summary;
     private Bitmap mBitmap;
     private Movie movieToDisplay;
-
-    private boolean offlineMode;
 
     public DetailFragment() {
         setHasOptionsMenu(true);
@@ -168,7 +166,11 @@ public class DetailFragment extends Fragment {
         if (getActivity().getIntent().hasExtra(getString(R.string.parcelable_key))) {
             movieToDisplay = (Movie) getActivity().getIntent()
                     .getParcelableExtra(getString(R.string.parcelable_key));
-            isMoviePresentInDatabase(movieToDisplay);
+            if (Utility.isMoviePresentInDatabase(getContext(), movieToDisplay)) {
+                mFavourite.setText(getString(R.string.delete_database));
+            } else {
+                mFavourite.setText(getString(R.string.mark_as_fav));
+            }
             movieId = movieToDisplay.getId();
             offlineMode = false;
             updateUIWithSync();
@@ -182,33 +184,11 @@ public class DetailFragment extends Fragment {
         }
     }
 
-    public void isMoviePresentInDatabase(Movie movie) {
-        int id = movie.getId();
-        Uri uri = MoviesContract.MoviesEntry.buildMoviesUri(id);
-        Cursor cursor = getContext().getContentResolver()
-                .query(uri,
-                        projection,
-                        MoviesContract.MoviesEntry._ID + "=?",
-                        new String[]{String.valueOf(id)},
-                        null);
-        if (cursor.getCount() != 0) {
-            //movie present in db
-            mFavourite.setText(getString(R.string.delete_database));
-        } else {
-            mFavourite.setText(getString(R.string.mark_as_fav));
-        }
-    }
-
     public void fetchMovieFromDatabase() {
-        Uri uri = MoviesContract.MoviesEntry.buildMoviesUri(movieId);
-        Cursor cursor = getContext().getContentResolver()
-                .query(uri,
-                        projection,
-                        MoviesContract.MoviesEntry._ID + "=?",
-                        new String[]{String.valueOf(movieId)},
-                        null);
+        Cursor cursor = Utility.getCursorWithId(getContext(), projection, movieId);
 
         if (cursor.moveToFirst()) {
+            Log.v("Mansi","cursor if");
             //grabbing all values from returned cursor
             String title = cursor.getString(COL_NAME);
             int duration = cursor.getInt(COL_DURATION);
@@ -293,7 +273,7 @@ public class DetailFragment extends Fragment {
         mSynopsis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mCallback.notifyChange(mSynopsis, summary);
+                mCallback.notifyClick(mSynopsis, summary);
             }
         });
     }
@@ -358,7 +338,7 @@ public class DetailFragment extends Fragment {
     }
 
     public interface Callback {
-        void notifyChange(View view, String text);
+        void notifyClick(View view, String text);
     }
 
     public class FetchLogoBitmap extends AsyncTask<String, Void, Bitmap> {

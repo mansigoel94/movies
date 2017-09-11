@@ -86,7 +86,6 @@ public class Movie implements Parcelable {
         return "Title: " + mTitle + "\n" +
                 "Plot: " + mSynopsis + "\n" +
                 "Ratings: " + mRatings + "\n" +
-                "Release year: " + mReleaseDate + "\n" +
-                "Id: " + id + "\n";
+                "Release year: " + Utility.formatDate(mReleaseDate) + "\n";
     }
 }

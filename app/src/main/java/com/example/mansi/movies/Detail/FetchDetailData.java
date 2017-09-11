@@ -183,7 +183,7 @@ public class FetchDetailData extends AsyncTask<String, Void, String[]> {
             DetailFragment.mReview1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mCallback.notifyChange(DetailFragment.mReview1, reviewsSetter[0]);
+                    mCallback.notifyClick(DetailFragment.mReview1, reviewsSetter[0]);
                 }
             });
 
@@ -191,7 +191,7 @@ public class FetchDetailData extends AsyncTask<String, Void, String[]> {
             DetailFragment.mReview2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mCallback.notifyChange(DetailFragment.mReview2, reviewsSetter[1]);
+                    mCallback.notifyClick(DetailFragment.mReview2, reviewsSetter[1]);
                 }
             });
 
@@ -199,7 +199,7 @@ public class FetchDetailData extends AsyncTask<String, Void, String[]> {
             DetailFragment.mReview3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mCallback.notifyChange(DetailFragment.mReview3, reviewsSetter[2]);
+                    mCallback.notifyClick(DetailFragment.mReview3, reviewsSetter[2]);
                 }
             });
 
@@ -208,7 +208,7 @@ public class FetchDetailData extends AsyncTask<String, Void, String[]> {
             DetailFragment.mReview1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mCallback.notifyChange(DetailFragment.mReview1, reviewsSetter[0]);
+                    mCallback.notifyClick(DetailFragment.mReview1, reviewsSetter[0]);
                 }
             });
 
@@ -216,7 +216,7 @@ public class FetchDetailData extends AsyncTask<String, Void, String[]> {
             DetailFragment.mReview2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mCallback.notifyChange(DetailFragment.mReview2, reviewsSetter[1]);
+                    mCallback.notifyClick(DetailFragment.mReview2, reviewsSetter[1]);
                 }
             });
 
@@ -227,7 +227,7 @@ public class FetchDetailData extends AsyncTask<String, Void, String[]> {
             DetailFragment.mReview1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mCallback.notifyChange(DetailFragment.mReview1, reviewsSetter[0]);
+                    mCallback.notifyClick(DetailFragment.mReview1, reviewsSetter[0]);
                 }
             });
 
