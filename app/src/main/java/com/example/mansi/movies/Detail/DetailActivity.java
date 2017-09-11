@@ -29,10 +29,12 @@ public class DetailActivity extends AppCompatActivity implements DetailFragment.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.container, new DetailFragment(), DETFRAGTAG)
-                .commit();
+        if (savedInstanceState == null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.container, new DetailFragment(), DETFRAGTAG)
+                    .commit();
+        }
     }
 
     @Override
