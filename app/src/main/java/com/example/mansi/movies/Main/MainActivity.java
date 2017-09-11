@@ -3,7 +3,6 @@ package com.example.mansi.movies.Main;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -26,23 +25,19 @@ public class MainActivity extends AppCompatActivity {
                 getString(R.string.list_preference_key),
                 getString(R.string.list_preference_default_value));
 
-        Log.v("Mansi", "preference is " + preference);
-
-        if (!preference.equals(getString(R.string.favorites_value))) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.container, new MainFragmentAsyncTask(), ASYNC_FRAG_TAG)
-                    .addToBackStack(CURSOR_FRAG_TAG)
-                    .commit();
-
-        } else {
+        if (preference.equals(getString(R.string.favorites_value))) {
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.container, new MainFragmentCursor(), CURSOR_FRAG_TAG)
                     .addToBackStack(ASYNC_FRAG_TAG)
                     .commit();
+        } else {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.container, new MainFragmentAsyncTask(), ASYNC_FRAG_TAG)
+                    .addToBackStack(CURSOR_FRAG_TAG)
+                    .commit();
         }
-
     }
 
     @Override
@@ -64,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    //clicking on up button from fragments gets back to Main activity but if we press back button it should
+    //go back to previous fragment if there is a fragment added to back stack
     @Override
     public void onBackPressed() {
         int count = getSupportFragmentManager().getBackStackEntryCount();

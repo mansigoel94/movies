@@ -28,14 +28,11 @@ import java.util.ArrayList;
 public class MainFragmentAsyncTask extends Fragment implements LoaderManager.LoaderCallbacks<ArrayList<Movie>> {
 
     private static final int LOADER_ID = 1;
-    private static final String LOG_TAG = MainFragmentAsyncTask.class.getSimpleName();
-    private static final String SCROLL_POSITION_KEY = "scroll";
     Context context;
     private MovieAdapter mAdapter;
     private ProgressBar mProgressBar;
     private TextView mEmptyView;
     private GridView mGridview;
-    private int mPosition = 0;
 
     public MainFragmentAsyncTask() {
         // Required empty public constructor
@@ -49,12 +46,6 @@ public class MainFragmentAsyncTask extends Fragment implements LoaderManager.Loa
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        if (savedInstanceState != null) {
-            mPosition = savedInstanceState.getInt(SCROLL_POSITION_KEY);
-        }
-
-        ArrayList<Movie> movieArrayList = new ArrayList<>();
-
         context = getContext();
 
         // Inflate the layout for this fragment
@@ -65,18 +56,8 @@ public class MainFragmentAsyncTask extends Fragment implements LoaderManager.Loa
         mEmptyView = (TextView) rootView.findViewById(R.id.emptyView);
         mEmptyView.setText(getString(R.string.no_internet_connection));
 
-        mAdapter = new MovieAdapter(getActivity(), movieArrayList);
+        mAdapter = new MovieAdapter(getActivity(), new ArrayList<Movie>());
         mGridview.setAdapter(mAdapter);
-
-        //since smoothScrollToPosition was not working directly therefore I used delay thread
-        //I understand its not the optimal solution so please can you tell me the optimal way to do the scrolling
-        //of gridview without delaying the operation
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mGridview.smoothScrollToPosition(mPosition);
-            }
-        }, 200);
 
         mGridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -93,14 +74,6 @@ public class MainFragmentAsyncTask extends Fragment implements LoaderManager.Loa
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        //get first visible position
-        int index = mGridview.getFirstVisiblePosition();
-        int offset = mGridview.getTop();
-        outState.putInt(SCROLL_POSITION_KEY, index);
     }
 
     @Override

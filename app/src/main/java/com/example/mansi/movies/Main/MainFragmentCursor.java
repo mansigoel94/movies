@@ -1,18 +1,15 @@
 package com.example.mansi.movies.Main;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,25 +20,18 @@ import android.widget.TextView;
 
 import com.example.mansi.movies.Database.MoviesContract;
 import com.example.mansi.movies.Detail.DetailActivity;
-import com.example.mansi.movies.Movie;
 import com.example.mansi.movies.R;
-
-import java.util.ArrayList;
 
 public class MainFragmentCursor extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
     private static final int LOADER_ID = 1;
-    private static final String LOG_TAG = MainFragmentCursor.class.getSimpleName();
-    private static final String SCROLL_POSITION_KEY = "scroll";
     Context context;
     private FavouriteCollectionAdapter mAdapter;
     private ProgressBar mProgressBar;
     private TextView mEmptyView;
     private GridView mGridview;
-    private int mPosition = 0;
 
     public MainFragmentCursor() {
         // Required empty public constructor
-        Log.v("Mansi", "Cursor fragment started");
     }
 
     @Override
@@ -52,12 +42,6 @@ public class MainFragmentCursor extends Fragment implements LoaderManager.Loader
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        if (savedInstanceState != null) {
-            mPosition = savedInstanceState.getInt(SCROLL_POSITION_KEY);
-        }
-
-        ArrayList<Movie> movieArrayList = new ArrayList<>();
-
         context = getContext();
 
         // Inflate the layout for this fragment
@@ -66,7 +50,6 @@ public class MainFragmentCursor extends Fragment implements LoaderManager.Loader
         mProgressBar = (ProgressBar) rootView.findViewById(R.id.progressBar);
         mGridview = (GridView) rootView.findViewById(R.id.gridview);
         mEmptyView = (TextView) rootView.findViewById(R.id.emptyView);
-//        mEmptyView.setVisibility(View.VISIBLE);
         mEmptyView.setText(R.string.no_fav_collection);
 
         mAdapter = new FavouriteCollectionAdapter(getActivity(), null);
@@ -74,21 +57,10 @@ public class MainFragmentCursor extends Fragment implements LoaderManager.Loader
 
         mGridview.setEmptyView(mEmptyView);
 
-        //since smoothScrollToPosition was not working directly therefore I used delay thread
-        //I understand its not the optimal solution so please can you tell me the optimal way to do the scrolling
-        //of gridview without delaying the operation
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mGridview.smoothScrollToPosition(mPosition);
-            }
-        }, 200);
-
         mGridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Cursor selectedMovie = (Cursor) adapterView.getItemAtPosition(position);
-                Log.v("Mansi", "Cursor returned");
                 Intent openDetailActivity = new Intent(getActivity(), DetailActivity.class);
                 openDetailActivity.putExtra(getString(R.string.cursor_key),
                         selectedMovie.getInt(selectedMovie.getColumnIndex(MoviesContract.MoviesEntry.COL_ID)));
@@ -104,19 +76,11 @@ public class MainFragmentCursor extends Fragment implements LoaderManager.Loader
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
-        //get first visible position
-        int index = mGridview.getFirstVisiblePosition();
-        outState.putInt(SCROLL_POSITION_KEY, index);
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
         mProgressBar.setVisibility(View.VISIBLE);
         //Restarting loader instead of initLoader to refresh data everytime after preference changes in SettingsActivity
         getLoaderManager().restartLoader(LOADER_ID, null, this);
-
     }
 
     @Override
