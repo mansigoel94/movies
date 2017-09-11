@@ -1,12 +1,15 @@
 package com.example.mansi.movies;
 
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+
+import com.example.mansi.movies.Main.MainActivity;
 
 public class SettingsActivity extends PreferenceActivity {
 
@@ -36,5 +39,12 @@ public class SettingsActivity extends PreferenceActivity {
             CharSequence entries[] = ((ListPreference) preference).getEntries();
             preference.setSummary(entries[selectedItemIndex]);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 }

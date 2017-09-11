@@ -13,14 +13,23 @@
     </string>
 
     <string name="release_date">Release date</string>
-    <string name="open_detail_intent_key">Movie_object</string>
     <string name="list_preference_key">list_preference_sorting</string>
     <string name="list_preference_name">Display by</string>
 
     <string name="list_preference_default_value">popular</string>
     <string name="top_rated_value">top_rated</string>
+    <string name="favorites_value">fav</string>
 
     <string name="popular_label">Most Popular</string>
     <string name="top_rated_label">Top rated</string>
+    <string name="favourites_label">Favourites</string>
+
     <string name="no_trailers">No Trailers available</string>
+    <string name="no_fav_collection">You currently have no favourites collection  \tAdd now.</string>
+    <string name="parcelable_key">Parcelable key</string>
+    <string name="cursor_key">Cursor key</string>
+    <string name="movie_added">Movie added to favourites</string>
+    <string name="movie_deleted">Movie deleted from favourites</string>
+    <string name="delete_database">Delete from favourites</string>
+    <string name="mark_as_fav">Mark as  Favourite</string>
 </resources>

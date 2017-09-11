@@ -1,9 +1,14 @@
-package com.example.mansi.movies;
+package com.example.mansi.movies.Main;
 
 import android.content.Context;
 import android.net.Uri;
 import android.support.v4.content.AsyncTaskLoader;
 import android.util.Log;
+
+import com.example.mansi.movies.BuildConfig;
+import com.example.mansi.movies.Movie;
+import com.example.mansi.movies.R;
+import com.example.mansi.movies.Utility;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -99,7 +104,7 @@ public class FetchMoviesData extends AsyncTaskLoader<ArrayList<Movie>> {
                 String movieTitle = currentMovie.getString(title);
                 String moviePoster = currentMovie.getString(poster_path);
                 String moviePlotSynopsis = currentMovie.getString(plot);
-                double voteAverage = currentMovie.getDouble(ratings);
+                float voteAverage = (float) currentMovie.getDouble(ratings);
                 String movieReleaseDate = currentMovie.getString(date);
                 //adding new movie to moviesArrayList
                 movieArrayList.add(i, new Movie(

@@ -4,4 +4,4 @@
     android:id="@+id/container"
     xmlns:android="http://schemas.android.com/apk/res/android"
     tools:ignore="MergeRootFrame"
-    tools:context=".MainActivity"/>
+    tools:context=".Main.MainActivity"/>

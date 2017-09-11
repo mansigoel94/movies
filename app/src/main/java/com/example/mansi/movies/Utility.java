@@ -11,20 +11,19 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static android.R.attr.duration;
 import static android.content.Context.CONNECTIVITY_SERVICE;
 
 public class Utility {
     public static final String BASEURL = "http://image.tmdb.org/t/p/";
     final static String PATH = "w185";
 
-    public static Uri getAbsoluteUrlForPoster(String relativeUrl) {
+    public static String getAbsoluteUrlForPoster(String relativeUrl) {
         Uri uri = Uri.parse(BASEURL)
                 .buildUpon()
                 .appendPath(PATH)
                 .appendPath(relativeUrl.substring(1))
                 .build();
-        return uri;
+        return uri.toString();
     }
 
     public static boolean isNetworkConnected(Context context) {

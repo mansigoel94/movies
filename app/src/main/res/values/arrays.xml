@@ -4,10 +4,12 @@
     <string-array name="SortingName">
         <item>@string/popular_label</item>
         <item>@string/top_rated_label</item>
+        <item>@string/favourites_label</item>
     </string-array>
 
     <string-array name="SortingValues">
         <item>@string/list_preference_default_value</item>
         <item>@string/top_rated_value</item>
+        <item>@string/favorites_value</item>
     </string-array>
 </resources>

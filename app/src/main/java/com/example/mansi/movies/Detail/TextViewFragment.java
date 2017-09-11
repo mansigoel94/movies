@@ -1,4 +1,4 @@
-package com.example.mansi.movies;
+package com.example.mansi.movies.Detail;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.mansi.movies.R;
 
 public class TextViewFragment extends Fragment {
     @Nullable

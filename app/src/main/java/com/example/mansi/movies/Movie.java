@@ -20,11 +20,11 @@ public class Movie implements Parcelable {
     private String mTitle = null;
     private String mPoster = null;
     private String mSynopsis = null;
-    private double mRatings = -1;
+    private float mRatings = -1.0f;
     private String mReleaseDate = null;
 
     public Movie(int id, String title, String poster, String synopsis,
-                 double ratings, String releaseDate) {
+                 float ratings, String releaseDate) {
         this.id = id;
         mTitle = title;
         mPoster = poster;
@@ -38,7 +38,7 @@ public class Movie implements Parcelable {
         mTitle = in.readString();
         mPoster = in.readString();
         mSynopsis = in.readString();
-        mRatings = in.readDouble();
+        mRatings = in.readFloat();
         mReleaseDate = in.readString();
     }
 
@@ -50,7 +50,7 @@ public class Movie implements Parcelable {
         return mPoster;
     }
 
-    public double getRatings() {
+    public float getRatings() {
         return mRatings;
     }
 
@@ -77,7 +77,7 @@ public class Movie implements Parcelable {
         parcel.writeString(mTitle);
         parcel.writeString(mPoster);
         parcel.writeString(mSynopsis);
-        parcel.writeDouble(mRatings);
+        parcel.writeFloat(mRatings);
         parcel.writeString(mReleaseDate);
     }
 

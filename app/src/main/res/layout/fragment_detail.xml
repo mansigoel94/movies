@@ -54,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="Duration"
-                    tools:text="120min" />
+                    tools:text="120 min" />
 
                 <TextView
                     android:id="@+id/detail_ratings"
@@ -73,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:background="@color/light_teal"
-                    android:text="Mark as\nfavourite" />
+                    android:visibility="invisible" />
             </LinearLayout>
         </LinearLayout>
 

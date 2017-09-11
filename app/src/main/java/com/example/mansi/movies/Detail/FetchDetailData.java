@@ -1,4 +1,4 @@
-package com.example.mansi.movies;
+package com.example.mansi.movies.Detail;
 
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
+
+import com.example.mansi.movies.BuildConfig;
+import com.example.mansi.movies.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,33 +24,19 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import static com.example.mansi.movies.DetailFragment.mDuration;
-import static com.example.mansi.movies.DetailFragment.mReview1;
-import static com.example.mansi.movies.DetailFragment.mReview2;
-import static com.example.mansi.movies.DetailFragment.mReview3;
-import static com.example.mansi.movies.DetailFragment.mReviewLabel1;
-import static com.example.mansi.movies.DetailFragment.mReviewLabel2;
-import static com.example.mansi.movies.DetailFragment.mReviewLabel3;
-import static com.example.mansi.movies.DetailFragment.mTrailer1;
-import static com.example.mansi.movies.DetailFragment.mTrailer1Layout;
-import static com.example.mansi.movies.DetailFragment.mTrailer2;
-import static com.example.mansi.movies.DetailFragment.mTrailer2Layout;
-import static com.example.mansi.movies.DetailFragment.mTrailer3;
-import static com.example.mansi.movies.DetailFragment.mTrailer3Layout;
-import static com.example.mansi.movies.DetailFragment.mTrailerLabel;
-
 public class FetchDetailData extends AsyncTask<String, Void, String[]> {
 
     private static final String BASEURL = "http://api.themoviedb.org/3/movie/";
     private static final String API_KEY = "api_key";
+    static int runTimeDuration;
+    static String[] reviewsSetter = new String[3];
+    static int counterReviews;
     Context mContext;
     DetailFragment.Callback mCallback;
     private int mId;
-    private int runTimeDuration;
     private String[] reviews;
     private String[] trailer;
     private String[] trailerSetter = new String[3];
-    private String[] reviewsSetter = new String[3];
 
     public FetchDetailData(Context context, int id) {
         mContext = context;
@@ -73,7 +61,6 @@ public class FetchDetailData extends AsyncTask<String, Void, String[]> {
                     .build();
             URL url = null;
             try {
-                Log.v("Mansi", "url " + uri.toString());
                 url = new URL(uri.toString());
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -152,87 +139,116 @@ public class FetchDetailData extends AsyncTask<String, Void, String[]> {
         //check number of trailers for selected movie
         switch (counterTrailer) {
             case 0:
-                mTrailerLabel.setText(R.string.no_trailers);
+                DetailFragment.mTrailerLabel.setText(R.string.no_trailers);
             case 1:
                 //one trailer
-                mTrailer1Layout.setVisibility(View.VISIBLE);
-                mTrailer1.setOnClickListener(clickListenerTrailer1);
+                DetailFragment.mTrailer1Layout.setVisibility(View.VISIBLE);
+                DetailFragment.mTrailer1.setOnClickListener(clickListenerTrailer1);
                 break;
             case 2:
                 //two trailers
-                mTrailer1Layout.setVisibility(View.VISIBLE);
-                mTrailer1.setOnClickListener(clickListenerTrailer1);
+                DetailFragment.mTrailer1Layout.setVisibility(View.VISIBLE);
+                DetailFragment.mTrailer1.setOnClickListener(clickListenerTrailer1);
 
-                mTrailer2Layout.setVisibility(View.VISIBLE);
-                mTrailer2.setOnClickListener(clickListenerTrailer2);
+                DetailFragment.mTrailer2Layout.setVisibility(View.VISIBLE);
+                DetailFragment.mTrailer2.setOnClickListener(clickListenerTrailer2);
                 break;
             case 3:
                 //movies has max 3 trailers
-                mTrailer1Layout.setVisibility(View.VISIBLE);
-                mTrailer1.setOnClickListener(clickListenerTrailer1);
+                DetailFragment.mTrailer1Layout.setVisibility(View.VISIBLE);
+                DetailFragment.mTrailer1.setOnClickListener(clickListenerTrailer1);
 
-                mTrailer2Layout.setVisibility(View.VISIBLE);
-                mTrailer2.setOnClickListener(clickListenerTrailer2);
+                DetailFragment.mTrailer2Layout.setVisibility(View.VISIBLE);
+                DetailFragment.mTrailer2.setOnClickListener(clickListenerTrailer2);
 
-                mTrailer3Layout.setVisibility(View.VISIBLE);
-                mTrailer3.setOnClickListener(clickListenerTrailer3);
+                DetailFragment.mTrailer3Layout.setVisibility(View.VISIBLE);
+                DetailFragment.mTrailer3.setOnClickListener(clickListenerTrailer3);
             default:
                 break;
         }
 
-        //TODO Implement reviews in layout
         //checking reviews withing review array
-        int counterReviews = 0;
+        counterReviews = 0;
         for (String string : reviews) {
             if (!TextUtils.isEmpty(string)) {
-                //Made a assumption that there can be max 3 reviews
                 if (counterReviews == 3)
                     break;
-                Log.v("Mansi", "Reviews " + string);
                 reviewsSetter[counterReviews++] = string;
             }
         }
 
-        if (counterReviews >= 1) {
-            mReviewLabel1.setVisibility(View.VISIBLE);
-            mReview1.setVisibility(View.VISIBLE);
-            mReview1.setText(reviewsSetter[0]);
-            mReview1.setOnClickListener(new View.OnClickListener() {
+        if (counterReviews == 3) {
+
+            DetailFragment.mReview1.setText(reviewsSetter[0]);
+            DetailFragment.mReview1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mCallback.notifyChange(mReview1, reviewsSetter[0]);
+                    mCallback.notifyChange(DetailFragment.mReview1, reviewsSetter[0]);
                 }
             });
-        }
-        if (counterReviews >= 2) {
-            mReviewLabel2.setVisibility(View.VISIBLE);
-            mReview2.setVisibility(View.VISIBLE);
-            mReview2.setText(reviewsSetter[1]);
-            mReview2.setOnClickListener(new View.OnClickListener() {
+
+            DetailFragment.mReview2.setText(reviewsSetter[1]);
+            DetailFragment.mReview2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mCallback.notifyChange(mReview2, reviewsSetter[1]);
+                    mCallback.notifyChange(DetailFragment.mReview2, reviewsSetter[1]);
                 }
             });
-        }
-        if (counterReviews >= 3) {
-            mReviewLabel3.setVisibility(View.VISIBLE);
-            mReview3.setVisibility(View.VISIBLE);
-            mReview3.setText(reviewsSetter[2]);
-            mReview3.setOnClickListener(new View.OnClickListener() {
+
+            DetailFragment.mReview3.setText(reviewsSetter[2]);
+            DetailFragment.mReview3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mCallback.notifyChange(mReview3, reviewsSetter[2]);
+                    mCallback.notifyChange(DetailFragment.mReview3, reviewsSetter[2]);
                 }
             });
+
+        } else if (counterReviews == 2) {
+            DetailFragment.mReview1.setText(reviewsSetter[0]);
+            DetailFragment.mReview1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mCallback.notifyChange(DetailFragment.mReview1, reviewsSetter[0]);
+                }
+            });
+
+            DetailFragment.mReview2.setText(reviewsSetter[1]);
+            DetailFragment.mReview2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mCallback.notifyChange(DetailFragment.mReview2, reviewsSetter[1]);
+                }
+            });
+
+            DetailFragment.mReviewLabel3.setVisibility(View.GONE);
+            DetailFragment.mReview3.setVisibility(View.GONE);
+        } else if (counterReviews == 1) {
+            DetailFragment.mReview1.setText(reviewsSetter[0]);
+            DetailFragment.mReview1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mCallback.notifyChange(DetailFragment.mReview1, reviewsSetter[0]);
+                }
+            });
+
+            DetailFragment.mReviewLabel2.setVisibility(View.GONE);
+            DetailFragment.mReview2.setVisibility(View.GONE);
+
+            DetailFragment.mReviewLabel3.setVisibility(View.GONE);
+            DetailFragment.mReview3.setVisibility(View.GONE);
+        } else {
+            DetailFragment.mReviewsLayout.setVisibility(View.GONE);
         }
 
         //display duration
         if (runTimeDuration != -1)
-            mDuration.setText(String.valueOf(runTimeDuration) + " min");
+            DetailFragment.mDuration.setText(String.valueOf(runTimeDuration) + " min");
         else {
-            mDuration.setVisibility(View.INVISIBLE);
+            DetailFragment.mDuration.setVisibility(View.INVISIBLE);
         }
+
+        //set visibility of mark as favourite button as visible
+        DetailFragment.mFavourite.setVisibility(View.VISIBLE);
     }
 
     public void parseJsonResponse(String jsonArray[]) {
