@@ -85,6 +85,8 @@ public class Movie implements Parcelable {
     public String toString() {
         return "Title: " + mTitle + "\n" +
                 "Plot: " + mSynopsis + "\n" +
-                "Ratings: " + mRatings + "\n";
+                "Ratings: " + mRatings + "\n" +
+                "Release year: " + mReleaseDate + "\n" +
+                "Id: " + id + "\n";
     }
 }

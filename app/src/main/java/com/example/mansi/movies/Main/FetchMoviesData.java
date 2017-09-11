@@ -27,7 +27,6 @@ import java.util.ArrayList;
 public class FetchMoviesData extends AsyncTaskLoader<ArrayList<Movie>> {
     private static final String BASEURL = "http://api.themoviedb.org/3/movie/";
     private static final String API_KEY = "api_key";
-    private static final String LOG_TAG = FetchMoviesData.class.getSimpleName();
 
     public FetchMoviesData(Context context) {
         super(context);

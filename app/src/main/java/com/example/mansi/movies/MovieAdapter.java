@@ -14,11 +14,9 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 public class MovieAdapter extends ArrayAdapter<Movie> {
-    private Context mContext;
 
     public MovieAdapter(@NonNull Context context, @NonNull ArrayList<Movie> objects) {
         super(context, 0, objects);
-        mContext = context;
     }
 
     @NonNull
@@ -34,12 +32,10 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
 
         Movie currentMovie = (Movie) getItem(position);
 
-        ImageView imageView = (ImageView) convertView.findViewById(R.id.home_poster);
-
         String relativeUrl = currentMovie.getPoster();
         Picasso.with(getContext())
                 .load(Utility.getAbsoluteUrlForPoster(relativeUrl))
-                .into(imageView);
+                .into(holder.imageView);
 
         return convertView;
     }
@@ -50,6 +46,5 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
         ViewHolder(View view) {
             imageView = (ImageView) view.findViewById(R.id.home_poster);
         }
-
     }
 }
